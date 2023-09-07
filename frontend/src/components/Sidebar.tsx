@@ -37,12 +37,12 @@ const Sidebar: React.FC = () => {
       footer: [
         {
           title: "Support",
-          href: "/support",
+          href: "#",
           icon: supportIcon,
         },
         {
           title: "Knowledgebase",
-          href: "/knowledgebase",
+          href: "#",
           icon: knowledgebaseIcon,
         },
       ],
@@ -133,7 +133,7 @@ const Sidebar: React.FC = () => {
                 isCollapsedSidebar
                   ? "w-[34px] h-[34px] flex justify-center items-center"
                   : "px-[40px]"
-              } py-[9px] rounded-[5px] bg-[#F0564F] hover:bg-[#F0564F] text-[13px] font-semibold`}
+              } py-[9px] rounded-[5px] bg-[#F0564F] hover:bg-[#fb6e66] text-[13px] font-semibold`}
               title="Add New Contact"
             >
               {isCollapsedSidebar ? (
