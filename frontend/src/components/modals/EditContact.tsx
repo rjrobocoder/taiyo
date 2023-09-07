@@ -1,35 +1,38 @@
 import React, { useState, useEffect } from "react";
 import closeIconDark from "../../assets/images/close-icon-dark.svg";
+import { RootState } from "../../redux/store/store";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useDispatch } from "react-redux/es/hooks/useDispatch";
+import { updateContact } from "../../redux/store/slices/ContactsSlice";
 
 interface EditContactProps {
-  employeeId: number | null;
-  onSubmit: () => void;
+  contactId: number | null;
   closeModal: () => void;
 }
 
-const EditContact: React.FC<EditContactProps> = ({
-  employeeId,
-  onSubmit,
-  closeModal,
-}) => {
+const EditContact: React.FC<EditContactProps> = ({ contactId, closeModal }) => {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [status, setStatus] = useState<string>("");
+  const [id, setId] = useState<number>(0);
+  const contacts = useSelector((state: RootState) => state.contacts);
+  const dispatch = useDispatch();
 
-  const fetchContactById = async (id: number | null) => {
+  const getContactById = async (id: number | null) => {
     try {
-      // const { name, email, status } = response.data;
-      setName("Rajesh Biswas");
-      setEmail("rjbiswas@gmail.com");
-      setStatus("active");
+      const data = contacts?.filter((contact) => contact?.id === id);
+      setId(data[0]?.id);
+      setName(data[0]?.name);
+      setEmail(data[0]?.email);
+      setStatus(data[0]?.status);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    fetchContactById(employeeId);
-  }, [employeeId]);
+    getContactById(contactId);
+  }, [contactId]);
 
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -54,18 +57,19 @@ const EditContact: React.FC<EditContactProps> = ({
   const handleUpdate = async () => {
     try {
       const updatedContact = {
-        name,
-        email,
-        status,
+        id: id,
+        name: name,
+        email: email,
+        status: status,
       };
-      // handle update logic here
+
+      dispatch(updateContact(updatedContact));
 
       console.log("Update successful");
       closeModal();
     } catch (error) {
       console.log("Update failed:", error);
     }
-    onSubmit();
   };
 
   return (

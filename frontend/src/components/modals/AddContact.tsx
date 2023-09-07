@@ -1,16 +1,14 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import closeIconDark from "../../assets/images/close-icon-dark.svg"
+import closeIconDark from "../../assets/images/close-icon-dark.svg";
+import { useDispatch } from "react-redux/es/exports";
+import { addContact } from "../../redux/store/slices/ContactsSlice";
 
 interface AddContactFormProps {
-  onSubmit: () => void;
   closeModal: () => void;
 }
 
-
-const AddContactForm: React.FC<AddContactFormProps> = ({
-  onSubmit,
-  closeModal,
-}) => {
+const AddContactForm: React.FC<AddContactFormProps> = ({ closeModal }) => {
+  const dispatch = useDispatch();
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [status, setStatus] = useState<string>("");
@@ -19,11 +17,15 @@ const AddContactForm: React.FC<AddContactFormProps> = ({
     event.preventDefault();
 
     try {
-      const formData = new FormData();
-      formData.append("name", name);
-      formData.append("email", email);
-      formData.append("status", status);
+      const currentTime = new Date().getTime();
+      const data = {
+        id: currentTime,
+        name: name,
+        email: email,
+        status: status,
+      };
 
+      dispatch(addContact(data));
       console.log("Contact added successfully!");
     } catch (error) {
       console.error(error);
@@ -32,7 +34,7 @@ const AddContactForm: React.FC<AddContactFormProps> = ({
     setName("");
     setEmail("");
     setStatus("");
-    onSubmit();
+    closeModal();
   };
 
   const handleInputChange = (
@@ -55,7 +57,6 @@ const AddContactForm: React.FC<AddContactFormProps> = ({
     }
   };
 
-
   return (
     <form
       className="bg-[#1a1c1d96] h-screen w-full absolute top-0 z-[22] flex items-center justify-center"
@@ -64,12 +65,7 @@ const AddContactForm: React.FC<AddContactFormProps> = ({
       <div className="relative w-[399px] bg-white rounded-[7px] px-[64px] py-[34px]">
         <div className="absolute top-[27px] right-[30px]" title="Close">
           <button type="button" onClick={closeModal}>
-            <img
-              src={closeIconDark}
-              height={17}
-              width={17}
-              alt="Close"
-            />
+            <img src={closeIconDark} height={17} width={17} alt="Close" />
           </button>
         </div>
         <div>

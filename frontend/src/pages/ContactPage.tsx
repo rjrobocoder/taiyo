@@ -1,64 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Layout from "../components/Layout";
-import axios from "axios";
 import AddContactForm from "../components/modals/AddContact";
 import EditContact from "../components/modals/EditContact";
-
-interface Contact {
-  name: string;
-  profile: string;
-  email: string;
-  status: string;
-  id: number;
-}
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useDispatch } from "react-redux/es/hooks/useDispatch";
+import { RootState } from "../redux/store/store";
+import { removeContact } from "../redux/store/slices/ContactsSlice";
 
 function ContactPage() {
-  const [contactData, setContactData] = useState<Contact[]>([
-    {
-      name: "Rajesh", 
-      profile: "", 
-      email: "rjbiswas@gmail.com", 
-      status: "active", 
-      id: 1
-    },
-    {
-      name: "Biswas", 
-      profile: "", 
-      email: "biswas@gmail.com", 
-      status: "active", 
-      id: 2
-    },
-    {
-      name: "Rahul", 
-      profile: "", 
-      email: "rahul@gmail.com", 
-      status: "inactive", 
-      id: 3
-    },
-  ]);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [currentContactId, setCurrentContactId] = useState<number | null>(
-    null
-  );
-  const [loading, setLoading] = useState(false);
-
-  const fetchData = async () => {
-    try {
-      // get all data logic here
-      // setTimeout(() => {
-      //   console.log("Loading... data")
-      // }, 3000);
-      // setLoading(false);
-    } catch (error) {
-      console.error(error);
-    }
-    setIsAddModalOpen(false);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const [currentContactId, setCurrentContactId] = useState<number | null>(null);
+  const contactData = useSelector((state: RootState) => state.contacts);
+  const dispatch = useDispatch();
 
   const handleCloseModal = () => {
     setIsAddModalOpen(false);
@@ -72,8 +26,7 @@ function ContactPage() {
 
   const deleteContact = async (id: number) => {
     try {
-      // delete logic here
-      // get the all contacts and find the specific contact and remove that and set the new list to "setContactData"
+      dispatch(removeContact(id));
     } catch (error) {
       console.error(error);
     }
@@ -81,7 +34,7 @@ function ContactPage() {
 
   const handleDelete = (id: number) => {
     const isConfirmed = window.confirm(
-      "Are you sure you want to delete this employee? It can't be undone."
+      "Are you sure you want to delete this employee? It can't be undo."
     );
     if (isConfirmed) {
       deleteContact(id);
@@ -91,36 +44,17 @@ function ContactPage() {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center">
-        <div
-          className="animate-spin inline-block w-6 h-6 border-[3px] border-current border-t-transparent text-blue-600 rounded-full"
-          role="status"
-          aria-label="loading"
-        >
-          <span className="sr-only">Loading...</span>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <>
-      {/* AddContact and EditContact components go here */}
-      {isAddModalOpen && (
-        <AddContactForm onSubmit={fetchData} closeModal={handleCloseModal} />
-      )}
+      {isAddModalOpen && <AddContactForm closeModal={handleCloseModal} />}
       {isEditModalOpen && (
         <EditContact
-          employeeId={currentContactId}
-          onSubmit={fetchData}
+          contactId={currentContactId}
           closeModal={handleCloseModal}
         />
       )}
 
       <Layout>
-
         <main className="px-[100px] pt-[30px]">
           <div className="flex justify-between items-center mt-2 px-8">
             <h2 className="text-2xl font-bold">Contact List</h2>
@@ -144,15 +78,11 @@ function ContactPage() {
               </tr>
             </thead>
             <tbody>
-              {contactData.map(({ name, profile, email, status, id }, i) => (
+              {contactData.map(({ name, email, status, id }, i) => (
                 <tr key={i} className="odd:bg-white even:bg-gray-100">
                   <td className="px-6 py-4">
                     <img
-                      src={`${
-                        profile
-                          ? `http://127.0.0.1:8000/storage/${profile}`
-                          : `https://i.pravatar.cc/150?u=${email}`
-                      }`}
+                      src={`https://i.pravatar.cc/150?u=${email}`}
                       className="w-10 h-10 rounded-full"
                       alt="User avatar"
                     />
