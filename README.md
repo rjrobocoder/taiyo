@@ -3,6 +3,8 @@
 
 This guide will walk you through the steps to set up and run the "Taiyo" React.js project on your local machine.
 
+**Live Demo**: [Taiyo App on Netlify](https://taiyoio.netlify.app/)
+
 ## Prerequisites
 
 Before you begin, make sure you have the following prerequisites installed:
