@@ -9,10 +9,13 @@ import menuAccountIcon from "../assets/images/menu-account-icon.svg";
 import signoutIcon from "../assets/images/signout-icon.svg";
 import hamburgerMenuIcon from "../assets/images/hamburger-menu-icon.svg";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux/es/hooks/useDispatch";
+import { openMenu } from "../redux/store/slices/MenuToggleSlice";
 
 const Header: React.FC = () => {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
   const menuRef = useRef<HTMLDivElement | null>(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleClickOutsideMenu = (event: MouseEvent) => {
@@ -27,6 +30,10 @@ const Header: React.FC = () => {
       document.removeEventListener("click", handleClickOutsideMenu);
     };
   }, []);
+
+  const handleMenu = () => {
+    dispatch(openMenu());
+  };
 
   return (
     <header>
@@ -132,7 +139,10 @@ const Header: React.FC = () => {
             </div>
           </div>
           <div>
-            <button className="flex items-center lg:hidden">
+            <button
+              className="flex items-center lg:hidden"
+              onClick={handleMenu}
+            >
               <img src={hamburgerMenuIcon} height={19} width={25} alt="menu" />
             </button>
           </div>
