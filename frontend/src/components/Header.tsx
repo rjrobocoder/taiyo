@@ -8,6 +8,7 @@ import collapseIconLight from "../assets/images/collapse-icon-light.svg";
 import menuAccountIcon from "../assets/images/menu-account-icon.svg";
 import signoutIcon from "../assets/images/signout-icon.svg";
 import hamburgerMenuIcon from "../assets/images/hamburger-menu-icon.svg";
+import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
@@ -95,7 +96,7 @@ const Header: React.FC = () => {
                   }`}
                 >
                   <div className="pl-[21px] pr-[8px] py-[10px]">
-                    <a href="#" className="flex items-center gap-[10px]">
+                    <Link to="#" className="flex items-center gap-[10px]">
                       <div>
                         <img
                           src={menuAccountIcon}
@@ -109,10 +110,10 @@ const Header: React.FC = () => {
                           My Account
                         </h1>
                       </div>
-                    </a>
+                    </Link>
                   </div>
                   <div className="pl-[21px] pr-[8px] py-[10px]">
-                    <a href="#" className="flex items-center gap-[10px]">
+                    <Link to="#" className="flex items-center gap-[10px]">
                       <div>
                         <img
                           src={signoutIcon}
@@ -124,7 +125,7 @@ const Header: React.FC = () => {
                       <div>
                         <h1 className="text-[14px] text-[#424242]">Sign Out</h1>
                       </div>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>

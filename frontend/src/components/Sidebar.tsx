@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import contactIcon from "../assets/images/user-group.svg";
 import chartBarIcon from "../assets/images/chart-bar-icon.svg";
 import accountIcon from "../assets/images/account-icon.svg";
@@ -13,6 +13,7 @@ import addContactIcon from "../assets/images/plus-circle-icon.svg";
 
 const Sidebar: React.FC = () => {
   const pathname = window.location.pathname;
+  const navigate = useNavigate();
   const [isCollapsedSidebar, setIsCollapsedSidebar] = useState(false);
 
   const sidebarItems = [
@@ -48,6 +49,10 @@ const Sidebar: React.FC = () => {
       ],
     },
   ];
+
+  const handleClick = () => {
+    navigate("/");
+  };
 
   return (
     <section className="relative lg:block hidden">
@@ -135,6 +140,7 @@ const Sidebar: React.FC = () => {
                   : "px-[40px]"
               } py-[9px] rounded-[5px] bg-[#F0564F] hover:bg-[#fb6e66] text-[13px] font-semibold`}
               title="Add New Contact"
+              onClick={handleClick}
             >
               {isCollapsedSidebar ? (
                 <img
