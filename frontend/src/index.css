@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '~leaflet/dist/leaflet.css';
+
 :root {
   --sidebar-head-padding-top: 30px;
   --sidebar-head-padding-bottom-collapsed: 104px;
