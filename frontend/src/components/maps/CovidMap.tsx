@@ -10,13 +10,28 @@ import {
 } from "react-leaflet";
 import axios from "axios";
 
+interface CountryData {
+  country: string;
+  cases: number;
+  active: number;
+  recovered: number;
+  deaths: number;
+  countryInfo: {
+    _id: number;
+    lat: number;
+    long: number;
+  };
+}
+
 const CovidMap: React.FC = () => {
-  const [countriesData, setCountriesData] = useState<any[]>([]);
+  const [countriesData, setCountriesData] = useState<CountryData[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_COVID_API_ENDPOINT}/countries`);
+        const response = await axios.get<CountryData[]>(
+          `${process.env.REACT_APP_COVID_API_ENDPOINT}/countries`
+        );
         const data = response.data;
         setCountriesData(data);
       } catch (error) {
@@ -48,7 +63,7 @@ const CovidMap: React.FC = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
-        {countriesData.map((country: any) => (
+        {countriesData.map((country: CountryData) => (
           <Marker
             key={country.countryInfo._id}
             position={[country.countryInfo.lat, country.countryInfo.long]}
