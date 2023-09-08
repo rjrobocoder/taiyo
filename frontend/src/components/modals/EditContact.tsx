@@ -32,7 +32,7 @@ const EditContact: React.FC<EditContactProps> = ({ contactId, closeModal }) => {
 
   useEffect(() => {
     getContactById(contactId);
-  }, [contactId]);
+  }, []);
 
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
