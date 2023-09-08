@@ -81,13 +81,13 @@ const EditContact: React.FC<EditContactProps> = ({ contactId, closeModal }) => {
           </button>
         </div>
         <div>
-          <h1 className="text-[20px] text-[#7B45E5] font-semibold leading-[10.24px] pb-[33px]">
+          <h1 className="text-[20px] text-[#F0564F] font-semibold leading-[10.24px] pb-[33px]">
             Update Contact Details
           </h1>
           <div>
             <ul className="flex flex-col gap-[16px]">
-              <li className="flex items-center gap-[15px]">
-                <div className="flex flex-col pb-[37px]">
+              <li className="flex items-center">
+                <div className="flex flex-col w-full">
                   <label
                     htmlFor="name"
                     className="text-[#666666] text-[14px] font-semibold pb-[11px]"
@@ -96,7 +96,7 @@ const EditContact: React.FC<EditContactProps> = ({ contactId, closeModal }) => {
                   </label>
                   <input
                     type="text"
-                    className="input-box-shadow border border-[#D7D7D7] rounded-[5px] h-[38px]"
+                    className="input-box-shadow border border-[#D7D7D7] rounded-[5px] h-[38px] px-[8px]"
                     id="name"
                     name="name"
                     value={name}
@@ -106,7 +106,7 @@ const EditContact: React.FC<EditContactProps> = ({ contactId, closeModal }) => {
                 </div>
               </li>
               <li className="flex items-center gap-[15px]">
-                <div className="flex flex-col pb-[37px]">
+                <div className="flex flex-col w-full">
                   <label
                     htmlFor="email"
                     className="text-[#666666] text-[14px] font-semibold pb-[11px]"
@@ -115,7 +115,7 @@ const EditContact: React.FC<EditContactProps> = ({ contactId, closeModal }) => {
                   </label>
                   <input
                     type="email"
-                    className="input-box-shadow border border-[#D7D7D7] rounded-[5px] h-[38px]"
+                    className="input-box-shadow border border-[#D7D7D7] rounded-[5px] h-[38px] px-[8px]"
                     id="email"
                     name="email"
                     value={email}
@@ -134,7 +134,7 @@ const EditContact: React.FC<EditContactProps> = ({ contactId, closeModal }) => {
                   </label>
                   <select
                     id="status"
-                    className="input-box-shadow border border-[#D7D7D7] rounded-[5px] h-[38px]"
+                    className="input-box-shadow border border-[#D7D7D7] rounded-[5px] h-[38px] px-[8px]"
                     name="status"
                     value={status}
                     onChange={handleInputChange}
@@ -152,12 +152,12 @@ const EditContact: React.FC<EditContactProps> = ({ contactId, closeModal }) => {
             <button
               type="button"
               onClick={closeModal}
-              className="text-white text-[16px] font-semibold leading-[24px] bg-[#4D3AC1] w-full rounded-[4px] py-[7px] uppercase"
+              className="text-[#6f6f6f] text-[16px] font-semibold leading-[24px] bg-[#bcbcbc] w-full rounded-[4px] py-[7px] uppercase"
             >
               Cancel
             </button>
             <button
-              className="text-white text-[16px] font-semibold leading-[24px] bg-[#4D3AC1] w-full rounded-[4px] py-[7px] uppercase"
+              className="text-white text-[16px] font-semibold leading-[24px] bg-[#F0564F] hover:bg-[#fb6e66] w-full rounded-[4px] py-[7px] uppercase"
               onClick={handleUpdate}
             >
               Update

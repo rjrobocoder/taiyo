@@ -69,13 +69,13 @@ const AddContactForm: React.FC<AddContactFormProps> = ({ closeModal }) => {
           </button>
         </div>
         <div>
-          <h1 className="text-[20px] text-[#7B45E5] font-semibold leading-[10.24px] pb-[33px]">
+          <h1 className="text-[20px] text-[#F0564F] font-semibold leading-[10.24px] pb-[33px]">
             Add a new contact
           </h1>
           <div>
             <ul className="flex flex-col gap-[16px]">
               <li className="flex items-center gap-[15px]">
-                <div className="flex flex-col">
+                <div className="flex flex-col w-full">
                   <label
                     htmlFor="name"
                     className="text-[#666666] text-[14px] font-semibold pb-[11px]"
@@ -94,7 +94,7 @@ const AddContactForm: React.FC<AddContactFormProps> = ({ closeModal }) => {
                 </div>
               </li>
               <li className="flex items-center gap-[15px]">
-                <div className="flex flex-col">
+                <div className="flex flex-col w-full">
                   <label
                     htmlFor="email"
                     className="text-[#666666] text-[14px] font-semibold pb-[11px]"
@@ -145,7 +145,7 @@ const AddContactForm: React.FC<AddContactFormProps> = ({ closeModal }) => {
             </button>
             <button
               type="submit"
-              className="text-white text-[16px] font-semibold leading-[24px] bg-[#4D3AC1] w-full rounded-[4px] py-[7px] uppercase"
+              className="text-white text-[16px] font-semibold leading-[24px] bg-[#F0564F] hover:bg-[#fb6e66] w-full rounded-[4px] py-[7px] uppercase"
             >
               Add
             </button>
