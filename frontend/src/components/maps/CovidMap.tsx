@@ -63,9 +63,9 @@ const CovidMap: React.FC = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
-        {countriesData.map((country: CountryData) => (
+        {countriesData.map((country: CountryData, i) => (
           <Marker
-            key={country.countryInfo._id}
+            key={i}
             position={[country.countryInfo.lat, country.countryInfo.long]}
             icon={customIcon}
           >
