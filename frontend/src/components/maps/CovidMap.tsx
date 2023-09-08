@@ -11,16 +11,36 @@ import {
 import axios from "axios";
 
 interface CountryData {
+  updated: number;
   country: string;
   cases: number;
   active: number;
   recovered: number;
   deaths: number;
   countryInfo: {
-    _id: number;
+    _id: number | null;
+    iso2: string | null;
+    iso3: string | null;
     lat: number;
     long: number;
+    flag: string;
   };
+  todayCases: number;
+  todayDeaths: number;
+  todayRecovered: number;
+  critical: number;
+  casesPerOneMillion: number;
+  deathsPerOneMillion: number;
+  tests: number;
+  testsPerOneMillion: number;
+  population: number;
+  continent: string;
+  oneCasePerPeople: number;
+  oneDeathPerPeople: number;
+  oneTestPerPeople: number;
+  activePerOneMillion: number;
+  recoveredPerOneMillion: number;
+  criticalPerOneMillion: number;
 }
 
 const CovidMap: React.FC = () => {
