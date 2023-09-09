@@ -59,7 +59,7 @@ function ChartsAndMapsPage() {
           <div className="border-t border-gray-200">
             <div className="p-6">
               <div className="map">
-                {/* <CovidMap /> */}
+                <CovidMap />
               </div>
             </div>
           </div>
