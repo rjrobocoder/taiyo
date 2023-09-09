@@ -11,7 +11,7 @@ function ChartsAndMapsPage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_COVID_API_ENDPOINT}/all`
+          "https://disease.sh/v3/covid-19/all"
         );
         const apiData = response.data;
 

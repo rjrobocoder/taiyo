@@ -50,7 +50,7 @@ const CovidMap: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get<CountryData[]>(
-          `${process.env.REACT_APP_COVID_API_ENDPOINT}/countries`
+          "https://disease.sh/v3/covid-19/countries"
         );
         const data = response.data;
         console.log("Data: ", data);
