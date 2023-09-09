@@ -83,23 +83,27 @@ const CovidMap: React.FC = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
-        {countriesData?.map((country: CountryData, i) => (
-          <Marker
-            key={i}
-            position={[country.countryInfo.lat, country.countryInfo.long]}
-            icon={customIcon}
-          >
-            <Popup>
-              <div>
-                <h2>{country.country}</h2>
-                <p>Total Cases: {country.cases}</p>
-                <p>Active Cases: {country.active}</p>
-                <p>Recovered Cases: {country.recovered}</p>
-                <p>Total Deaths: {country.deaths}</p>
-              </div>
-            </Popup>
-          </Marker>
-        ))}
+        {Array.isArray(countriesData) ? (
+          countriesData.map((country: CountryData, i) => (
+            <Marker
+              key={i}
+              position={[country.countryInfo.lat, country.countryInfo.long]}
+              icon={customIcon}
+            >
+              <Popup>
+                <div>
+                  <h2>{country.country}</h2>
+                  <p>Total Cases: {country.cases}</p>
+                  <p>Active Cases: {country.active}</p>
+                  <p>Recovered Cases: {country.recovered}</p>
+                  <p>Total Deaths: {country.deaths}</p>
+                </div>
+              </Popup>
+            </Marker>
+          ))
+        ) : (
+          <p>No data available</p>
+        )}
         <ZoomControl position="topleft" />
       </MapContainer>
     </div>
