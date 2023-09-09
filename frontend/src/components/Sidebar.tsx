@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import contactIcon from "../assets/images/user-group.svg";
 import chartBarIcon from "../assets/images/chart-bar-icon.svg";
 import accountIcon from "../assets/images/account-icon.svg";
-import supportIcon from "../assets/images/support-icon.svg";
-import knowledgebaseIcon from "../assets/images/knowledgebase-icon.svg";
+import gitHubIcon from "../assets/images/github-circular.png";
+import linkedinIcon from "../assets/images/linkedin.png";
 
 import collapseIcon from "../assets/images/collapse-icon.svg";
 import logoMini from "../assets/images/Taiyo-logo-mini.png";
@@ -42,14 +42,14 @@ const Sidebar: React.FC = () => {
       ],
       footer: [
         {
-          title: "Support",
-          href: "#",
-          icon: supportIcon,
+          title: "LinkedIn Profile",
+          href: "https://www.linkedin.com/in/rajesh-biswas72/",
+          icon: linkedinIcon,
         },
         {
-          title: "Knowledgebase",
-          href: "#",
-          icon: knowledgebaseIcon,
+          title: "Github Repository",
+          href: "https://github.com/rjrobocoder/taiyo",
+          icon: gitHubIcon,
         },
       ],
     },
@@ -173,6 +173,8 @@ const Sidebar: React.FC = () => {
                       pathname === href ? "active-tab" : ""
                     }`}
                     title={title}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     <div>
                       <img src={icon} width={15} height={15} alt={title} />

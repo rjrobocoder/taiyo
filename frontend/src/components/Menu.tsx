@@ -6,13 +6,13 @@ import { useDispatch } from "react-redux/es/hooks/useDispatch";
 import contactIcon from "../assets/images/user-group.svg";
 import chartBarIcon from "../assets/images/chart-bar-icon.svg";
 import accountIcon from "../assets/images/account-icon.svg";
-import supportIcon from "../assets/images/support-icon.svg";
-import knowledgebaseIcon from "../assets/images/knowledgebase-icon.svg";
+import gitHubIcon from "../assets/images/github-circular.png";
+import linkedinIcon from "../assets/images/linkedin.png";
 
 import closeIcon from "../assets/images/close-icon-light.svg";
 import { RootState } from "../redux/store/store";
 import { closeMenu } from "../redux/store/slices/MenuToggleSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Menu = () => {
   const pathname = window.location.pathname;
@@ -40,14 +40,14 @@ const Menu = () => {
       ],
       footer: [
         {
-          title: "Support",
-          href: "#",
-          icon: supportIcon,
+          title: "LinkedIn Profile",
+          href: "https://www.linkedin.com/in/rajesh-biswas72/",
+          icon: linkedinIcon,
         },
         {
-          title: "Knowledgebase",
-          href: "#",
-          icon: knowledgebaseIcon,
+          title: "Github Repository",
+          href: "https://github.com/rjrobocoder/taiyo",
+          icon: gitHubIcon,
         },
       ],
     },
@@ -111,12 +111,14 @@ const Menu = () => {
             <ul className="flex flex-col gap-1">
               {menuItems[0]?.footer?.map(({ href, icon, title }, i) => (
                 <li key={i} className="flex items-center mx-auto">
-                  <button
-                    onClick={() => handleNavigate(href)}
+                  <Link
+                    to={href}
                     className={`flex items-center gap-[11px] w-[216px] pl-[32px] h-[34px] rounded-[5px] hover:bg-[#2C344B] ${
                       pathname === href ? "active-tab" : ""
                     }`}
                     title={title}
+                    target="_blank" 
+                    rel="noopener noreferrer"
                   >
                     <div>
                       <img src={icon} width={15} height={15} alt={title} />
@@ -124,7 +126,7 @@ const Menu = () => {
                     <div className="sidebar-title">
                       <h1 className="text-white">{title}</h1>
                     </div>
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>

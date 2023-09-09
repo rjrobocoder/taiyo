@@ -53,8 +53,6 @@ const CovidMap: React.FC = () => {
           "https://disease.sh/v3/covid-19/countries"
         );
         const data = response.data;
-        console.log("Data: ", data);
-        console.log("Typeof data inside axios: ", typeof data)
         setCountriesData(data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -63,9 +61,6 @@ const CovidMap: React.FC = () => {
 
     fetchData();
   }, []);
-
-  console.log("Data outside axios: ", countriesData);
-  console.log("Typeof data outside axios: ", typeof countriesData)
 
   const mapCenter: [number, number] = [20, 0];
   const mapZoom: number = 3;
